@@ -1,6 +1,6 @@
 #include "main.h"
 
-/**
+/*
  * _strlen - returns the length of a string
  * @s: string
  * Return: length
@@ -28,7 +28,7 @@ int _strlen(char *s)
  * Return: copy of original source
  */
 
-char _strcpy(char dest, char src)
+char *_strcpy(char *dest, char *src)
 {
 	int i;
 
@@ -48,4 +48,5 @@ char *_strcpy(char *dest, char *src)
 	   dest++;
 	}
 	return (dest);
-*/}
+}
+*/
