@@ -1,38 +1,62 @@
 #include "main.h"
 
 /**
- * main - check the code
+ * _strlen_recursion - a function that returns the length of a string.
+ * @s: the string
  *
- * Return: Always 0.
+ * Return: the length of the  string
  */
-int main(void)
+int _strlen_recursion(char *s)
 {
-	int r;
+	int l = 0;
 
-	r = wildcmp("main.c", "*.c");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "m*a*i*n*.*c*");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "main.c");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "m*c");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "ma********************************c");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "*");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "***");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "m.*c");
-	printf("%d\n", r);
-	r = wildcmp("main.c", "**.*c");
-	printf("%d\n", r);
-	r = wildcmp("main-main.c", "ma*in.c");
-	printf("%d\n", r);
-	r = wildcmp("main", "main*d");
-	printf("%d\n", r);
-	r = wildcmp("abc", "*b");
-	printf("%d\n", r);
+	if (*s)
+	{
+		l += _strlen_recursion(s + 1) + 1;
+	}
+	return (l);
+}
 
+/**
+ * check - if it is a palindrome
+ * @s: the string
+ * @i: loop check forward
+ * @len: loop check backward
+ *
+ * Return: 1 if it is a palindrome otherwise 0
+ */
+
+int check(char *s, int i, int len)
+{
+	int l;
+
+	l = _strlen_recursion(s);
+
+	if (s[i] != s[len])
+		return (0);
+	if (s[i] == s[len])
+	{
+		if (l / 2 == (i + 1))
+			return (1);
+		else
+			return (check(s, i + 1, len - 1));
+	}
 	return (0);
+}
+
+/**
+ * is_palindrome - a function that returns 1 if a string is a palindrome
+ * and 0 if not.
+ * @s: the string
+ *
+ * Return: answer
+ */
+
+int is_palindrome(char *s)
+{
+	int len;
+
+	len = _strlen_recursion(s) - 1;
+
+	return (check(s, 0, len));
 }
